@@ -60,7 +60,7 @@ This project is **portfolio-ready**, showcasing **role-based access, dynamic UI,
 ```json
 [
   { "name": "Sabbir Ahmed", "phone": "01870243704", "password": "0112230346", "role": "admin" },
-  { "name": "John Doe", "phone": "01712345678", "password": "user123", "role": "customer" }
+  { "name": "Md Dipu", "phone": "01712345678", "password": "user123", "role": "customer" }
 ]
 ```
 
@@ -95,7 +95,7 @@ This project is **portfolio-ready**, showcasing **role-based access, dynamic UI,
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/PharmaCure.git
+git clone https://github.com/sabbirOG/Pharma-Cure.git
 ```
 
 2. Open `index.html` in your browser
