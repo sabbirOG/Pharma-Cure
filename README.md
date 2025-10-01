@@ -8,7 +8,7 @@
 
 PharmaCure is a **frontend-only pharmacy management system** designed to simulate the operations of a real pharmacy chamber. It allows customers to browse medicines, book doctor appointments, and manage their profiles, while the admin can manage medicines, doctors, and view appointments — all without a backend.
 
-This project is **portfolio-ready**, showcasing **role-based access, dynamic UI, bilingual support, and LocalStorage data persistence**.
+This project is **demo project**, showcasing **role-based access, dynamic UI, bilingual support, and LocalStorage data persistence**.
 
 ---
 
@@ -46,7 +46,7 @@ This project is **portfolio-ready**, showcasing **role-based access, dynamic UI,
 
 ## Tech Stack
 
-* HTML, CSS (Tailwind or Bootstrap)
+* HTML, CSS
 * JavaScript (Vanilla)
 * LocalStorage for data persistence
 * Optional: Chart.js for admin dashboard stats
@@ -59,8 +59,8 @@ This project is **portfolio-ready**, showcasing **role-based access, dynamic UI,
 
 ```json
 [
-  { "name": "Sabbir Ahmed", "phone": "01870243704", "password": "0112230346", "role": "admin" },
-  { "name": "Md Dipu", "phone": "01712345678", "password": "user123", "role": "customer" }
+  { "name": "Sabbir Ahmed", "phone": "018XXXXXXXX", "password": "011223XXXX", "role": "admin" },
+  { "name": "Md Dipu", "phone": "017XXXXXXXX", "password": "user123", "role": "customer" }
 ]
 ```
 
@@ -100,13 +100,6 @@ git clone https://github.com/sabbirOG/Pharma-Cure.git
 
 2. Open `index.html` in your browser
 
-3. Start using:
-
-   * Login as admin: **Sabbir Ahmed** | `01870243704` | `0112230346`
-   * Sign up as a customer
-   * Explore medicines, doctor appointments, and profile features
-
----
 
 ## Portfolio Notes
 
@@ -119,3 +112,5 @@ git clone https://github.com/sabbirOG/Pharma-Cure.git
 ## License
 
 MIT License
+---
+***Developed By Sabbir Ahmed***
