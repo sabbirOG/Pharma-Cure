@@ -53,11 +53,11 @@ const auth = {
         const users = utils.getFromStorage('users', []);
         
         // Check for admin credentials first
-        if (phone === '01870243704' && password === '0112230346') {
+        if (phone === '01870000000' && password === '0112230000') {
             const adminUser = {
                 id: 'admin-001',
                 name: 'Sabbir Ahmed',
-                phone: '01870243704',
+                phone: '01870000000',
                 role: 'admin',
                 createdAt: new Date().toISOString()
             };
