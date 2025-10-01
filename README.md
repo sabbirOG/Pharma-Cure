@@ -59,8 +59,8 @@ This project is **demo project**, showcasing **role-based access, dynamic UI, bi
 
 ```json
 [
-  { "name": "Sabbir Ahmed", "phone": "01870243704", "password": "0112230346", "role": "admin" },
-  { "name": "Md Dipu", "phone": "01712345678", "password": "user123", "role": "customer" }
+  { "name": "Sabbir Ahmed", "phone": "018XXXXXXXX", "password": "011223XXXX", "role": "admin" },
+  { "name": "Md Dipu", "phone": "017XXXXXXXX", "password": "user123", "role": "customer" }
 ]
 ```
 
