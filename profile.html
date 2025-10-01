@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaCure - Profile</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo" data-lang="app-title">PharmaCure</h1>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link" data-lang="nav-home">Home</a>
+                    <a href="medicine.html" class="nav-link" data-lang="nav-medicine">Medicine Corner</a>
+                    <a href="doctor.html" class="nav-link" data-lang="nav-doctor">Doctor Corner</a>
+                    <a href="profile.html" class="nav-link active" data-lang="nav-profile">Profile</a>
+                    <button class="btn btn-secondary" onclick="auth.logout()" data-lang="btn-logout">Logout</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="page-header">
+                <h2 data-lang="profile-title">My Profile</h2>
+                <p data-lang="profile-desc">Manage your account information and preferences</p>
+                </div>
+
+            <div class="profile-content">
+                <!-- Profile Information -->
+                <div class="profile-section">
+                    <h3 data-lang="profile-info">Profile Information</h3>
+                    <form id="profile-form" class="profile-form">
+                                <div class="form-group">
+                            <label data-lang="label-name">Full Name</label>
+                            <input type="text" id="profile-name" name="name" required>
+                                </div>
+
+                                <div class="form-group">
+                            <label data-lang="label-phone">Phone Number</label>
+                            <input type="tel" id="profile-phone" name="phone" required>
+                                </div>
+
+                        <div id="customer-fields" class="customer-fields">
+                            <div class="form-group">
+                                <label data-lang="label-age">Age</label>
+                                <input type="number" id="profile-age" name="age" min="1" max="120">
+                            </div>
+
+                            <div class="form-group">
+                                <label data-lang="label-address">Address</label>
+                                <textarea id="profile-address" name="address" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" data-lang="btn-update-profile">Update Profile</button>
+                    </form>
+                    </div>
+
+                <!-- Settings -->
+                <div class="profile-section">
+                    <h3 data-lang="settings">Settings</h3>
+                    <div class="settings-group">
+                        <label for="language-select" data-lang="label-language">Language</label>
+                        <select id="language-select" onchange="profile.changeLanguage(this.value)">
+                            <option value="en" data-lang="lang-english">English</option>
+                            <option value="bn" data-lang="lang-bangla">বাংলা</option>
+                        </select>
+                        </div>
+                    </div>
+
+                <!-- Account Actions -->
+                <div class="profile-section">
+                    <h3 data-lang="account-actions">Account Actions</h3>
+                    <div class="account-actions">
+                        <button class="btn btn-secondary" onclick="profile.changePassword()" data-lang="btn-change-password">Change Password</button>
+                        <button class="btn btn-danger" onclick="profile.deleteAccount()" data-lang="btn-delete-account">Delete Account</button>
+                        </div>
+                    </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p data-lang="footer-text">&copy; 2024 PharmaCure. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-lang="change-password">Change Password</h3>
+                <span class="close" onclick="profile.closePasswordModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="password-form">
+                    <div class="form-group">
+                        <label data-lang="label-current-password">Current Password</label>
+                        <input type="password" id="current-password" name="currentPassword" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-lang="label-new-password">New Password</label>
+                        <input type="password" id="new-password" name="newPassword" required minlength="6" oninput="profile.updatePasswordStrength(this.value)">
+                        <div class="password-strength" id="password-strength-text"></div>
+                        <div class="password-strength-indicator">
+                            <div class="password-strength-bar" id="password-strength-bar"></div>
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                        <label data-lang="label-confirm-password">Confirm New Password</label>
+                        <input type="password" id="confirm-new-password" name="confirmPassword" required>
+                </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="profile.closePasswordModal()" data-lang="btn-cancel">Cancel</button>
+                        <button type="submit" class="btn btn-primary" data-lang="btn-change-password">Change Password</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/language.js"></script>
+    <script src="assets/js/notifications.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/profile.js"></script>
+    <script>
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication
+            if (!auth.isAuthenticated()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load language
+            language.init();
+
+            // Load profile data
+            profile.loadProfile();
+
+            // Setup form submissions
+            document.getElementById('profile-form').addEventListener('submit', handleProfileUpdate);
+            document.getElementById('password-form').addEventListener('submit', handlePasswordChange);
+        });
+
+        function handleProfileUpdate(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const profileData = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                age: formData.get('age') ? parseInt(formData.get('age')) : null,
+                address: formData.get('address')
+            };
+
+            try {
+                profile.updateProfile(profileData);
+                notifications.showSuccess('Profile updated successfully!');
+            } catch (error) {
+                notifications.showError(error.message);
+            }
+        }
+
+        function handlePasswordChange(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const passwordData = {
+                currentPassword: formData.get('currentPassword'),
+                newPassword: formData.get('newPassword'),
+                confirmPassword: formData.get('confirmPassword')
+            };
+
+            // Validate passwords match
+            if (passwordData.newPassword !== passwordData.confirmPassword) {
+                notifications.showError('New passwords do not match!');
+                return;
+            }
+
+            try {
+                profile.changePassword(passwordData);
+                profile.closePasswordModal();
+                notifications.showSuccess('Password changed successfully!');
+            } catch (error) {
+                notifications.showError(error.message);
+            }
+        }
+    </script>
+</body>
+</html>

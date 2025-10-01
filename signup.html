@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaCure - Sign Up</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1 class="logo" data-lang="app-title">PharmaCure</h1>
+                    <h2 data-lang="signup-title">Create Your Account</h2>
+                </div>
+
+                <form id="signup-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="name" data-lang="label-name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" data-lang="label-phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="01XXXXXXXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age" data-lang="label-age">Age</label>
+                        <input type="number" id="age" name="age" required min="1" max="120">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" data-lang="label-address">Address</label>
+                        <textarea id="address" name="address" required rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" data-lang="label-password">Password</label>
+                        <input type="password" id="password" name="password" required minlength="6">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password" data-lang="label-confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" data-lang="btn-signup">Sign Up</button>
+                </form>
+
+                <div class="auth-footer">
+                    <p data-lang="have-account">Already have an account?</p>
+                    <a href="login.html" data-lang="link-login">Login here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/language.js"></script>
+    <script src="assets/js/notifications.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script>
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if already authenticated
+            if (auth.isAuthenticated()) {
+                const user = auth.getCurrentUser();
+                if (user.role === 'admin') {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'index.html';
+                }
+                return;
+            }
+
+            // Load language
+            language.init();
+
+            // Setup form submission
+            document.getElementById('signup-form').addEventListener('submit', handleSignup);
+        });
+
+        function handleSignup(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const userData = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                age: parseInt(formData.get('age')),
+                address: formData.get('address'),
+                password: formData.get('password'),
+                confirmPassword: formData.get('confirm-password')
+            };
+
+            // Validate passwords match
+            if (userData.password !== userData.confirmPassword) {
+                notifications.showError('Passwords do not match!');
+                return;
+            }
+
+            try {
+                auth.signup(userData);
+                notifications.showSuccess('Account created successfully!');
+                
+                // Redirect to login
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1000);
+            } catch (error) {
+                notifications.showError(error.message);
+            }
+        }
+    </script>
+</body>
+</html>
