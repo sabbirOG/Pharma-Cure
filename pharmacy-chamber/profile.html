@@ -105,7 +105,11 @@
 
                     <div class="form-group">
                         <label data-lang="label-new-password">New Password</label>
-                        <input type="password" id="new-password" name="newPassword" required minlength="6">
+                        <input type="password" id="new-password" name="newPassword" required minlength="6" oninput="profile.updatePasswordStrength(this.value)">
+                        <div class="password-strength" id="password-strength-text"></div>
+                        <div class="password-strength-indicator">
+                            <div class="password-strength-bar" id="password-strength-bar"></div>
+                        </div>
                     </div>
 
                 <div class="form-group">

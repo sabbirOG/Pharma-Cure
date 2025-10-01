@@ -1011,6 +1011,199 @@ body {
     font-size: 1.1rem;
 }
 
+/* Medicine Not Found Card */
+.medicine-not-found {
+    background: white;
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+    max-width: 500px;
+    border: 2px dashed #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.medicine-not-found:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    border-color: #667eea;
+}
+
+.medicine-not-found-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+    color: #667eea;
+}
+
+.medicine-not-found h3 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.medicine-not-found p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.medicine-not-found-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.medicine-not-found .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.medicine-not-found .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Delete Confirmation Modal */
+.delete-warning {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.warning-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #dc3545;
+}
+
+.delete-warning h4 {
+    color: #dc3545;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.delete-warning p {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.delete-warning ul {
+    text-align: left;
+    margin: 1rem 0;
+    padding-left: 2rem;
+    color: #666;
+}
+
+.delete-warning li {
+    margin-bottom: 0.5rem;
+}
+
+.delete-warning strong {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* Password Strength Indicator */
+.password-strength {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.password-strength.weak {
+    color: #dc3545;
+}
+
+.password-strength.medium {
+    color: #ffc107;
+}
+
+.password-strength.strong {
+    color: #28a745;
+}
+
+.password-strength-indicator {
+    height: 4px;
+    background: #e9ecef;
+    border-radius: 2px;
+    margin-top: 0.25rem;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.password-strength-bar.weak {
+    background: #dc3545;
+    width: 33%;
+}
+
+.password-strength-bar.medium {
+    background: #ffc107;
+    width: 66%;
+}
+
+.password-strength-bar.strong {
+    background: #28a745;
+    width: 100%;
+}
+
+/* Enhanced Modal Styles */
+.modal.show {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    animation: slideIn 0.3s ease;
+    max-width: 500px;
+    width: 90%;
+}
+
+/* Form Validation Styles */
+.form-group input:invalid {
+    border-color: #dc3545;
+}
+
+.form-group input:valid {
+    border-color: #28a745;
+}
+
+.form-group .error-message {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+.form-group input:invalid + .error-message {
+    display: block;
+}
+
+/* Button Disabled State */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn:disabled:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
 .text-center {
     text-align: center;
 }

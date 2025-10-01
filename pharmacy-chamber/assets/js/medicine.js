@@ -34,9 +34,9 @@ const medicine = {
         if (!container) return;
 
         if (this.filteredMedicines.length === 0) {
-            container.innerHTML = '';
+            container.innerHTML = this.getMedicineNotFoundCard();
             if (noResults) {
-                noResults.style.display = 'block';
+                noResults.style.display = 'none';
             }
             return;
         }
@@ -198,62 +198,57 @@ const medicine = {
 
     // Cart functionality
     addToCart(medicineId) {
-        const medicine = this.getMedicineById(medicineId);
-        if (!medicine) {
-            notifications.show('Medicine not found!', 'error');
-            return;
-        }
-
-        if (medicine.stock <= 0) {
-            notifications.show('This medicine is out of stock!', 'error');
-            return;
-        }
-
-        const existingItem = this.cart.find(item => item.medicineId === medicineId);
-        
-        if (existingItem) {
-            if (existingItem.quantity >= medicine.stock) {
-                notifications.show('Cannot add more items. Stock limit reached!', 'error');
-                return;
-            }
-            existingItem.quantity += 1;
-        } else {
-            this.cart.push({
-                medicineId: medicineId,
-                quantity: 1,
-                addedAt: new Date().toISOString()
-            });
-        }
-
-        this.saveCart();
-        this.renderMedicines();
-        this.updateCartCount();
-        notifications.show(`${medicine.name} added to cart!`, 'success');
+        // Use the updateQuantity function to add 1 to cart
+        this.updateQuantity(medicineId, 1);
     },
 
     updateQuantity(medicineId, change) {
         const medicine = this.getMedicineById(medicineId);
         if (!medicine) return;
 
-        const cartItem = this.cart.find(item => item.medicineId === medicineId);
-        if (!cartItem) return;
-
-        const newQuantity = cartItem.quantity + change;
+        let cartItem = this.cart.find(item => item.medicineId === medicineId);
+        const currentQuantity = cartItem ? cartItem.quantity : 0;
+        const newQuantity = currentQuantity + change;
         
-        if (newQuantity <= 0) {
-            this.removeFromCart(medicineId);
+        // If trying to go below 0, do nothing
+        if (newQuantity < 0) {
             return;
         }
 
+        // If trying to exceed stock, show error
         if (newQuantity > medicine.stock) {
             notifications.show('Cannot add more items. Stock limit reached!', 'error');
             return;
         }
 
+        // If quantity becomes 0, remove from cart
+        if (newQuantity === 0) {
+            if (cartItem) {
+                this.removeFromCart(medicineId);
+            }
+            return;
+        }
+
+        // If no cart item exists, create one
+        if (!cartItem) {
+            cartItem = {
+                medicineId: medicineId,
+                quantity: 0,
+                addedAt: new Date().toISOString()
+            };
+            this.cart.push(cartItem);
+        }
+
+        // Update quantity
         cartItem.quantity = newQuantity;
         this.saveCart();
         this.renderMedicines();
         this.updateCartCount();
+        
+        // Show success notification for adding to cart
+        if (currentQuantity === 0 && newQuantity > 0) {
+            notifications.show(`${medicine.name} added to cart!`, 'success');
+        }
     },
 
     removeFromCart(medicineId) {
@@ -358,5 +353,40 @@ const medicine = {
         if (cartCountElement) {
             cartCountElement.textContent = this.getCartCount();
         }
+    },
+
+    getMedicineNotFoundCard() {
+        return `
+            <div class="medicine-not-found">
+                <div class="medicine-not-found-icon">🔍</div>
+                <h3>No Medicines Found</h3>
+                <p>We couldn't find any medicines matching your search criteria. Try adjusting your search terms or filters to find what you're looking for.</p>
+                <div class="medicine-not-found-actions">
+                    <button class="btn btn-primary" onclick="medicine.clearSearch()">
+                        Clear Search
+                    </button>
+                    <button class="btn btn-secondary" onclick="medicine.showAllMedicines()">
+                        Show All Medicines
+                    </button>
+                </div>
+            </div>
+        `;
+    },
+
+    clearSearch() {
+        const searchInput = document.getElementById('search-input');
+        const categoryFilter = document.getElementById('category-filter');
+        const sortFilter = document.getElementById('sort-filter');
+        
+        if (searchInput) searchInput.value = '';
+        if (categoryFilter) categoryFilter.value = '';
+        if (sortFilter) sortFilter.value = 'name';
+        
+        this.filteredMedicines = [...this.medicines];
+        this.renderMedicines();
+    },
+
+    showAllMedicines() {
+        this.clearSearch();
     }
 };
