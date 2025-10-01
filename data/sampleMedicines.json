@@ -1,0 +1,122 @@
+[
+  {
+    "id": "med-001",
+    "name": "Paracetamol 500mg",
+    "category": "Pain Relief",
+    "price": 2.50,
+    "stock": 150,
+    "description": "Effective pain reliever and fever reducer. Safe for adults and children over 12 years."
+  },
+  {
+    "id": "med-002",
+    "name": "Amoxicillin 250mg",
+    "category": "Antibiotics",
+    "price": 8.75,
+    "stock": 75,
+    "description": "Broad-spectrum antibiotic for bacterial infections. Take as directed by your doctor."
+  },
+  {
+    "id": "med-003",
+    "name": "Vitamin C 1000mg",
+    "category": "Vitamins",
+    "price": 12.00,
+    "stock": 200,
+    "description": "High potency Vitamin C supplement to boost immune system and overall health."
+  },
+  {
+    "id": "med-004",
+    "name": "Ibuprofen 400mg",
+    "category": "Pain Relief",
+    "price": 4.25,
+    "stock": 120,
+    "description": "Anti-inflammatory pain reliever for headaches, muscle pain, and inflammation."
+  },
+  {
+    "id": "med-005",
+    "name": "Azithromycin 500mg",
+    "category": "Antibiotics",
+    "price": 15.50,
+    "stock": 50,
+    "description": "Macrolide antibiotic for respiratory and skin infections. Prescription required."
+  },
+  {
+    "id": "med-006",
+    "name": "Multivitamin Complex",
+    "category": "Vitamins",
+    "price": 18.75,
+    "stock": 100,
+    "description": "Complete multivitamin with essential vitamins and minerals for daily nutrition."
+  },
+  {
+    "id": "med-007",
+    "name": "Cough Syrup",
+    "category": "Cold & Flu",
+    "price": 6.50,
+    "stock": 80,
+    "description": "Natural cough suppressant with honey and herbal extracts for dry cough relief."
+  },
+  {
+    "id": "med-008",
+    "name": "Omeprazole 20mg",
+    "category": "Digestive",
+    "price": 9.25,
+    "stock": 90,
+    "description": "Proton pump inhibitor for acid reflux and stomach ulcers. Take before meals."
+  },
+  {
+    "id": "med-009",
+    "name": "Cetirizine 10mg",
+    "category": "Cold & Flu",
+    "price": 3.75,
+    "stock": 110,
+    "description": "Antihistamine for allergy relief, hay fever, and allergic reactions."
+  },
+  {
+    "id": "med-010",
+    "name": "Probiotics 50 Billion CFU",
+    "category": "Digestive",
+    "price": 22.00,
+    "stock": 60,
+    "description": "High potency probiotic supplement for digestive health and immune support."
+  },
+  {
+    "id": "med-011",
+    "name": "Aspirin 75mg",
+    "category": "Pain Relief",
+    "price": 1.50,
+    "stock": 200,
+    "description": "Low-dose aspirin for heart health and mild pain relief. Consult doctor before use."
+  },
+  {
+    "id": "med-012",
+    "name": "Vitamin D3 2000 IU",
+    "category": "Vitamins",
+    "price": 14.50,
+    "stock": 85,
+    "description": "High potency Vitamin D3 supplement for bone health and immune function."
+  },
+  {
+    "id": "med-013",
+    "name": "Ciprofloxacin 500mg",
+    "category": "Antibiotics",
+    "price": 11.25,
+    "stock": 40,
+    "description": "Fluoroquinolone antibiotic for urinary tract and respiratory infections."
+  },
+  {
+    "id": "med-014",
+    "name": "Loperamide 2mg",
+    "category": "Digestive",
+    "price": 5.75,
+    "stock": 70,
+    "description": "Anti-diarrheal medication for temporary relief of diarrhea symptoms."
+  },
+  {
+    "id": "med-015",
+    "name": "Cold & Flu Tablets",
+    "category": "Cold & Flu",
+    "price": 7.25,
+    "stock": 95,
+    "description": "Multi-symptom relief for cold and flu including fever, headache, and congestion."
+  }
+]
